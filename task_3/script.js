@@ -1,15 +1,23 @@
 const btn = document.querySelector('button');
-const result = document.querySelector('.result')
+const input = document.querySelector('input');
+const result = document.querySelector('.result');
+
+input.addEventListener('keypress', event => {
+  if (event.key == 'Enter') {
+    event.preventDefault();
+    btn.click();
+  }
+});
 
 btn.addEventListener('click', () => {
   useRequest(displayResult);
 });
 
 function useRequest(callback) {
-  const value = document.querySelector('input').value;
+  const value = input.value;
 
   if (value < 1 || value > 10) {
-    console.log('число вне диапазона от 1 до 10')
+    alert('число вне диапазона от 1 до 10')
   } else {
     url = `https://picsum.photos/v2/list?limit=${value}`;
 
